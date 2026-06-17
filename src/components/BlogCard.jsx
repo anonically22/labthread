@@ -16,10 +16,10 @@ const BlogCard = ({ post }) => {
   const displayTags = post.tags.slice(0, 2);
 
   return (
-    <motion.div variants={itemVariants}>
+    <motion.div variants={itemVariants} whileHover={{ y: -4, transition: { duration: 0.2 } }}>
       <Link 
         to={`/blog/${post.slug}`} 
-        className="block h-full bg-white border border-[#E2E2DF] rounded-xl p-5 hover:border-gray-400 transition-colors duration-200"
+        className="block h-full bg-white border border-[#E2E2DF] rounded-xl p-5 hover:border-gray-400 hover:shadow-md transition-all duration-200"
       >
         <div className="w-10 h-10 bg-primary-light rounded-lg flex items-center justify-center text-[22px]">
           {post.coverEmoji}

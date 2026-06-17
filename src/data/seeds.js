@@ -92,6 +92,60 @@ GATE preparation gets pushed to "after the semester ends" until suddenly it's Ja
 
 I had thesis work, internship applications, and coursework running simultaneously. The only thing that worked was fixed 1-hour slots before anything else each morning. Not long sessions. Consistent ones.
     `
+  },
+  {
+    id: "post_004",
+    title: "Mastering Molecular Cloning at CSIR-IICB",
+    slug: "molecular-cloning-at-csir-iicb",
+    excerpt: "In January 2025, I was selected as 1 of 12 trainees for a skill development program at the Indian Institute of Chemical Biology. Here is what I learned about cloning and protein expression.",
+    tags: ["cloning", "protein expression", "internship"],
+    publishedAt: "2025-02-10T00:00:00.000Z",
+    published: true,
+    coverEmoji: "🧬",
+    content: `
+## The CSIR-IICB Experience
+
+Getting selected for the "Molecular Cloning, Protein Expression and Structural Characterization" program was a turning point. It bridged the gap between textbook theory and benchwork reality.
+
+## Hands-on Cloning
+
+We cloned our gene of interest into both cloning and expression vectors. The nuances of restriction digestion, ligation, and transformation are much trickier when your hands are doing the pipetting instead of your brain reading a diagram.
+
+## Protein Purification
+
+I was trained in purifying the expressed protein using affinity chromatography and size exclusion chromatography. The satisfaction of seeing a pure protein band on an SDS-PAGE gel is unmatched. We also learned Circular Dichroism and Spectroscopy for structural characterization. 
+
+## Takeaway
+
+If you get a chance to attend a dedicated skill development program, take it. It condenses months of trial-and-error into a few weeks of guided, intensive learning.
+    `
+  },
+  {
+    id: "post_005",
+    title: "Navigating International Journal Clubs: STEM for Development",
+    slug: "stem-for-development-journal-club",
+    excerpt: "I was selected among 30 students globally for the Biomedicine Journal Club. Discussing complex research papers with international peers taught me how to communicate science effectively.",
+    tags: ["journal club", "science communication", "research"],
+    publishedAt: "2024-12-15T00:00:00.000Z",
+    published: true,
+    coverEmoji: "🌍",
+    content: `
+## Why join a journal club?
+
+Reading a paper alone is fine, but dissecting it with 5-6 peers biweekly forces you to confront what you don't understand. Under the guidance of Dr. Schwab and Nicholas Offei, our group tackled complex papers in biomedicine.
+
+## The Papers We Explored
+
+We discussed some fascinating work, including:
+- A DNA machine-based magnetic resonance imaging nanoprobe for in vivo microRNA detection.
+- Lentiviral vector gene therapy and CFTR modulators in cystic fibrosis rat airway models.
+
+## The Art of Presentation
+
+My biggest takeaway was learning how to present. We focused on effective communication strategies and attention-grabbing visuals to convey key findings. It's not just about reciting data; it's about telling the story of the unknowns and the motivation behind the study.
+
+At the end of the session, I was recognized as one of the most reliable and collaborative members of the club. It reinforced my belief that science is fundamentally a team sport.
+    `
   }
 ];
 

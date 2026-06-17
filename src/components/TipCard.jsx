@@ -8,8 +8,10 @@ const TipCard = ({ tip, isOpen, onToggle }) => {
       layout
       className="bg-white border border-[#E2E2DF] rounded-xl overflow-hidden"
     >
-      <div 
+      <motion.div 
         className="px-5 py-4 flex justify-between items-center cursor-pointer"
+        whileHover={{ backgroundColor: "rgba(243, 244, 246, 0.5)" }}
+        transition={{ duration: 0.2 }}
         onClick={onToggle}
       >
         <h3 className="font-sans font-medium text-[15px] text-foreground">
@@ -20,7 +22,7 @@ const TipCard = ({ tip, isOpen, onToggle }) => {
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
         />
-      </div>
+      </motion.div>
       
       <AnimatePresence initial={false}>
         {isOpen && (

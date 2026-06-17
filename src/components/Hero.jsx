@@ -40,16 +40,44 @@ const Hero = () => {
   if (!settings) return null;
 
   return (
-    <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="text-center md:text-left"
-      >
+    <section className="relative pt-8 pb-10 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto min-h-[calc(100vh-120px)] flex items-center">
+      {/* Playful background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+        <motion.div 
+          animate={{ y: [0, -20, 0], rotate: [0, 15, -15, 0] }} 
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-12 left-8 md:left-20 text-primary/10"
+        >
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15 9h8l-6 5 2 8-7-5-7 5 2-8-6-5h8z"/></svg>
+        </motion.div>
+        
+        <motion.div 
+          animate={{ y: [0, 30, 0], x: [0, 20, 0] }} 
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-32 right-12 md:right-32 text-blue-400/10"
+        >
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" /></svg>
+        </motion.div>
+
+        <motion.div 
+          animate={{ rotate: 360, scale: [1, 1.1, 1] }} 
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-24 left-1/3 text-green-500/10"
+        >
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M3 3h18v18H3zM12 8v8m-4-4h8"/></svg>
+        </motion.div>
+      </div>
+
+      <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16 w-full">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="text-center md:text-left flex-1"
+        >
         <motion.h1 
           variants={itemVariants}
-          className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-foreground leading-tight tracking-tight mb-6"
+          className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground leading-tight tracking-tight mb-6"
         >
           {settings.siteTagline.split('science').map((part, index, array) => (
             <span key={index}>
@@ -91,7 +119,24 @@ const Hero = () => {
             {settings.heroStat3}
           </div>
         </motion.div>
-      </motion.div>
+        </motion.div>
+
+        {/* Right side image */}
+        <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          animate="visible"
+          className="flex-1 w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto"
+        >
+          <motion.img 
+            whileHover={{ scale: 1.05, rotate: 2 }}
+            transition={{ type: "spring", stiffness: 300 }}
+            src="/doodle.png" 
+            alt="Hero Doodle" 
+            className="w-full h-auto object-contain drop-shadow-sm grayscale hover:grayscale-0 transition-all duration-500"
+          />
+        </motion.div>
+      </div>
     </section>
   );
 };

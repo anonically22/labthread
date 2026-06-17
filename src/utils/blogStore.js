@@ -10,7 +10,22 @@ export const getAllPosts = () => {
     setItem(POSTS_KEY, seedPosts);
     return seedPosts;
   }
-  return posts;
+  
+  // Merge new seed posts if they don't exist in local storage
+  let updated = false;
+  const mergedPosts = [...posts];
+  seedPosts.forEach(seed => {
+    if (!mergedPosts.find(p => p.id === seed.id)) {
+      mergedPosts.push(seed);
+      updated = true;
+    }
+  });
+
+  if (updated) {
+    setItem(POSTS_KEY, mergedPosts);
+  }
+
+  return mergedPosts;
 };
 
 export const getPublishedPosts = () => {

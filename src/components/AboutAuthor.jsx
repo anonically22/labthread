@@ -53,28 +53,30 @@ const AboutAuthor = () => {
             variants={itemVariants}
             className="flex flex-col items-center md:items-start md:w-1/3 flex-shrink-0"
           >
-            <img 
+            <motion.img 
+              whileHover={{ scale: 1.05, rotate: -2 }}
+              transition={{ type: "spring", stiffness: 300 }}
               src={profileImage} 
               alt={authorData.name} 
-              className="w-24 h-24 rounded-full object-cover shadow-sm mb-4"
+              className="w-40 h-40 rounded-full object-cover shadow-sm mb-4"
             />
-            <h3 className="text-[15px] font-medium font-sans text-foreground mb-2">
+            <h3 className="text-lg font-medium font-sans text-foreground mb-2">
               {authorData.name}
             </h3>
-            <div className="bg-primary-light text-primary text-xs font-medium px-3 py-1 rounded-full mb-4 text-center md:text-left">
+            <div className="bg-primary-light text-primary text-xs font-medium px-3 py-1 rounded-full mb-4 inline-block">
               {authorData.currentStatus}
             </div>
             
             <div className="flex gap-4 text-gray-500">
-              <a href={authorData.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label="LinkedIn">
+              <motion.a whileHover={{ scale: 1.2, color: "#0077b5" }} href={authorData.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label="LinkedIn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-              </a>
-              <a href={authorData.wordpress} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label="WordPress">
+              </motion.a>
+              <motion.a whileHover={{ scale: 1.2, color: "#21759b" }} href={authorData.wordpress} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label="WordPress">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-              </a>
-              <a href={authorData.medium} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label="Medium">
+              </motion.a>
+              <motion.a whileHover={{ scale: 1.2, color: "#000000" }} href={authorData.medium} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label="Medium">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><path d="M4 4h16v16H4z" rx="2" ry="2"></path><path d="M8 9h1l3 3 3-3h1"></path><path d="M8 15h2"></path><path d="M14 15h2"></path><path d="M9 9v6"></path><path d="M15 9v6"></path></svg>
-              </a>
+              </motion.a>
             </div>
           </motion.div>
 
@@ -90,9 +92,9 @@ const AboutAuthor = () => {
                 Notable experiences
               </h4>
               
-              <div className="flex overflow-x-auto pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 sm:overflow-visible sm:pb-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 snap-x">
+              <div className="flex overflow-x-auto pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 sm:overflow-visible sm:pb-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 snap-x items-stretch">
                 {authorData.notableExperiences.map((exp) => (
-                  <div key={exp.id} className="snap-start">
+                  <div key={exp.id} className="snap-start h-full">
                     <ExperienceCard title={exp.title} description={exp.description} />
                   </div>
                 ))}

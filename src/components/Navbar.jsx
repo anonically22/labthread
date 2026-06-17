@@ -19,21 +19,22 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex">
-            <div className="flex-shrink-0 flex items-center">
+            <motion.div className="flex-shrink-0 flex items-center" whileHover={{ scale: 1.05 }}>
               <Link to="/" className="text-2xl font-serif font-bold text-primary">
                 LabThread
               </Link>
-            </div>
+            </motion.div>
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
             {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className="inline-flex items-center px-1 pt-1 text-sm font-medium text-foreground hover:text-primary transition-colors"
-              >
-                {link.name}
-              </Link>
+              <motion.div key={link.name} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link
+                  to={link.path}
+                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-foreground hover:text-primary transition-colors h-full"
+                >
+                  {link.name}
+                </Link>
+              </motion.div>
             ))}
           </div>
           <div className="-mr-2 flex items-center sm:hidden">
