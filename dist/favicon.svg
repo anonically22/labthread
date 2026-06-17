@@ -1,0 +1,49 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#34D399"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Flask -->
+  <path
+    d="M220 80
+       V180
+       L130 335
+       C120 352 132 376 152 376
+       H360
+       C380 376 392 352 382 335
+       L292 180
+       V80"
+    fill="none"
+    stroke="url(#g)"
+    stroke-width="18"
+    stroke-linecap="round"
+    stroke-linejoin="round"/>
+
+  <!-- Thread -->
+  <path
+    d="M155 255
+       C190 220 225 290 256 255
+       C287 220 322 290 357 255"
+    fill="none"
+    stroke="url(#g)"
+    stroke-width="16"
+    stroke-linecap="round"/>
+
+  <!-- Nodes -->
+  <circle cx="155" cy="255" r="10" fill="#10B981"/>
+  <circle cx="256" cy="255" r="10" fill="#10B981"/>
+  <circle cx="357" cy="255" r="10" fill="#10B981"/>
+
+  <!-- Liquid -->
+  <path
+    d="M170 305
+       C205 285 240 325 280 300
+       C315 280 340 300 340 300
+       V350
+       H170 Z"
+    fill="url(#g)"
+    opacity="0.15"/>
+</svg>

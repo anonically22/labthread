@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hash Gen</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script>
+</head>
+<body>
+    <div id="hash-output">Generating...</div>
+    <script>
+        setTimeout(() => {
+            try {
+                var bcrypt = dcodeIO.bcrypt;
+                var salt = bcrypt.genSaltSync(10);
+                var hash = bcrypt.hashSync("LabThread2025!", salt);
+                document.getElementById('hash-output').innerText = hash;
+            } catch (e) {
+                document.getElementById('hash-output').innerText = "Error: " + e.message;
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

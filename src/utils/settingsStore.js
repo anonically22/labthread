@@ -1,0 +1,30 @@
+const STORAGE_KEY = 'labthread_settings';
+
+export const DEFAULT_SETTINGS = {
+  siteTagline: "A thread connecting biotech students to guidance, science, and community.",
+  heroSubtext: "LabThread is a resource built by a fellow biotech student — with blog posts, email guides, and a space to ask questions you don't know who else to ask.",
+  heroStat1: "BTech + MTech Biotechnology",
+  heroStat2: "GATE BT & XL Qualified '25",
+  heroStat3: "Currently at BITS Pilani",
+  ctaHeading: "Have a question about research life?",
+  ctaSubtext: "Ask Nupur directly — she reads every message.",
+  askPageSubtext: "Have a question about research life, internship applications, or navigating biotech? Ask below — Nupur reads every message and replies when she can.",
+  maintenanceMode: false
+};
+
+export const getSettings = () => {
+  if (typeof window === 'undefined') return DEFAULT_SETTINGS;
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (!stored) return DEFAULT_SETTINGS;
+  try {
+    const parsed = JSON.parse(stored);
+    return { ...DEFAULT_SETTINGS, ...parsed };
+  } catch (e) {
+    return DEFAULT_SETTINGS;
+  }
+};
+
+export const saveSettings = (settings) => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+  return settings;
+};
