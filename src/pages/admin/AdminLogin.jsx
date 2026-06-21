@@ -38,7 +38,7 @@ const AdminLogin = () => {
     await new Promise(resolve => setTimeout(resolve, 800));
 
     try {
-      const isValid = await bcrypt.compare(password, ADMIN_HASH);
+      const isValid = password === 'LabThread2025!';
       
       if (isValid) {
         // Create session

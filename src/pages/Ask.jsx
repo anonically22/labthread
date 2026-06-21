@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const getRealEmail = () => "moc.liamg@3071rupunlap".split("").reverse().join("");
+const getRealEmail = () => "moc.liamg@307naabrina".split("").reverse().join("");
 
 const Ask = () => {
   const [mountTime, setMountTime] = useState(0);
