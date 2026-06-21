@@ -6,9 +6,6 @@ import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Tips from './pages/Tips';
 import Ask from './pages/Ask';
-import AdminLogin from './pages/admin/AdminLogin';
-import AdminDashboard from './pages/admin/AdminDashboard';
-import ProtectedRoute from './components/ProtectedRoute';
 import MaintenancePage from './pages/MaintenancePage';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
@@ -39,10 +36,7 @@ function App() {
       </AnimatePresence>
       <Router>
         <Routes>
-          {/* Admin Routes - always accessible */}
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
-
+          {/* Admin Routes - temporarily disabled */}
           {/* Public Routes - behind maintenance mode */}
           {maintenance ? (
             <Route path="*" element={<MaintenancePage />} />

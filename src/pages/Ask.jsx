@@ -12,6 +12,7 @@ const Ask = () => {
     website: '' // honeypot
   });
   const [submitted, setSubmitted] = useState(false);
+  const [gmailLink, setGmailLink] = useState('');
 
   useEffect(() => {
     setMountTime(Date.now());
@@ -62,7 +63,17 @@ ${formData.question}
 Sent via LabThread · labthread.vercel.app`;
 
       const mailtoString = `mailto:${targetEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = mailtoString;
+      const fallbackGmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${targetEmail}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      
+      setGmailLink(fallbackGmail);
+      
+      // Open native mail app on mobile, Gmail web on desktop
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        window.location.href = mailtoString;
+      } else {
+        window.open(fallbackGmail, '_blank');
+      }
     }
     
     // Fake success for bots, real success for users
@@ -73,10 +84,10 @@ Sent via LabThread · labthread.vercel.app`;
     <div className="min-h-screen pb-20 pt-12">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-serif font-bold text-foreground mb-4">
+          <h1 className="text-[36px] md:text-5xl font-display font-[500] text-ink mb-4">
             Ask a question
           </h1>
-          <p className="text-muted font-sans text-[14px] max-w-[560px] mx-auto">
+          <p className="text-steel font-body text-[15px] max-w-[560px] mx-auto">
             Have a question about research life, internship applications, or navigating biotech? Ask below — Nupur reads every message and replies when she can.
           </p>
         </div>
@@ -97,7 +108,7 @@ Sent via LabThread · labthread.vercel.app`;
               />
               
               <div>
-                <label className="block font-sans text-[14px] font-medium text-foreground mb-1.5">
+                <label className="block font-mono text-[12.5px] uppercase tracking-wider text-steel mb-1.5">
                   Your name
                 </label>
                 <input
@@ -107,12 +118,12 @@ Sent via LabThread · labthread.vercel.app`;
                   onChange={handleChange}
                   required
                   placeholder="e.g. Priya Sharma"
-                  className="w-full border border-[#E2E2DF] rounded-lg px-4 py-2.5 font-sans text-[15px] focus:outline-none focus:border-[#0F6E56] focus:ring-1 focus:ring-[#0F6E56]"
+                  className="w-full border border-steel/20 rounded px-4 py-2.5 font-body text-[15px] bg-paper focus:outline-none focus:border-thread focus:ring-1 focus:ring-thread"
                 />
               </div>
 
               <div>
-                <label className="block font-sans text-[14px] font-medium text-foreground mb-1.5">
+                <label className="block font-mono text-[12.5px] uppercase tracking-wider text-steel mb-1.5">
                   Your email
                 </label>
                 <input
@@ -122,12 +133,12 @@ Sent via LabThread · labthread.vercel.app`;
                   onChange={handleChange}
                   required
                   placeholder="so Nupur can reply"
-                  className="w-full border border-[#E2E2DF] rounded-lg px-4 py-2.5 font-sans text-[15px] focus:outline-none focus:border-[#0F6E56] focus:ring-1 focus:ring-[#0F6E56]"
+                  className="w-full border border-steel/20 rounded px-4 py-2.5 font-body text-[15px] bg-paper focus:outline-none focus:border-thread focus:ring-1 focus:ring-thread"
                 />
               </div>
 
               <div>
-                <label className="block font-sans text-[14px] font-medium text-foreground mb-1.5">
+                <label className="block font-mono text-[12.5px] uppercase tracking-wider text-steel mb-1.5">
                   What is this about?
                 </label>
                 <select
@@ -135,7 +146,7 @@ Sent via LabThread · labthread.vercel.app`;
                   value={formData.category}
                   onChange={handleChange}
                   required
-                  className="w-full border border-[#E2E2DF] rounded-lg px-4 py-2.5 font-sans text-[15px] bg-white focus:outline-none focus:border-[#0F6E56] focus:ring-1 focus:ring-[#0F6E56]"
+                  className="w-full border border-steel/20 rounded px-4 py-2.5 font-body text-[15px] bg-paper focus:outline-none focus:border-thread focus:ring-1 focus:ring-thread"
                 >
                   <option value="" disabled>Select a category</option>
                   <option value="Cold emailing a PI">Cold emailing a PI</option>
@@ -147,7 +158,7 @@ Sent via LabThread · labthread.vercel.app`;
               </div>
 
               <div>
-                <label className="block font-sans text-[14px] font-medium text-foreground mb-1.5">
+                <label className="block font-mono text-[12.5px] uppercase tracking-wider text-steel mb-1.5">
                   Your question
                 </label>
                 <textarea
@@ -158,9 +169,9 @@ Sent via LabThread · labthread.vercel.app`;
                   minLength={30}
                   rows={5}
                   placeholder="Write your question here. The more context you give, the more useful the reply will be."
-                  className="w-full border border-[#E2E2DF] rounded-lg px-4 py-2.5 font-sans text-[15px] focus:outline-none focus:border-[#0F6E56] focus:ring-1 focus:ring-[#0F6E56] resize-y"
+                  className="w-full border border-steel/20 rounded px-4 py-2.5 font-body text-[15px] bg-paper focus:outline-none focus:border-thread focus:ring-1 focus:ring-thread resize-y"
                 />
-                <div className="text-right text-[12px] text-muted mt-1 font-sans">
+                <div className="text-right text-[12px] text-steel mt-1 font-mono">
                   {formData.question.length} / 800 characters
                 </div>
               </div>
@@ -168,32 +179,52 @@ Sent via LabThread · labthread.vercel.app`;
               <button
                 type="submit"
                 disabled={!isFormValid()}
-                className="w-full bg-[#0F6E56] text-white font-sans font-medium text-[15px] rounded-lg h-[44px] flex items-center justify-center hover:bg-[#0c5946] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-thread text-paper font-body font-medium text-[15px] rounded h-[44px] flex items-center justify-center hover:bg-thread/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Send via email &rarr;
               </button>
 
               {submitted && (
-                <div className="flex items-start gap-2 mt-4 text-[#0F6E56]">
-                  <i className="ti ti-circle-check text-[20px] shrink-0 mt-0.5"></i>
-                  <p className="font-sans text-[13px] leading-relaxed">
-                    Your email client should have opened with your message ready to send. If it didn't, you can email Nupur directly at {getRealEmail()}
-                  </p>
+                <div className="mt-6 p-4 bg-beige/30 border border-thread/20 rounded">
+                  <div className="flex items-start gap-2 text-thread mb-3">
+                    <i className="ti ti-circle-check text-[20px] shrink-0 mt-0.5"></i>
+                    <p className="font-body text-[14px] font-medium leading-relaxed">
+                      Your email client should have opened with your message ready to send!
+                    </p>
+                  </div>
+                  <div className="font-body text-[13px] text-ink ml-7 space-y-2">
+                    <p>
+                      If nothing opened, it means your browser doesn't have a default email app configured. You can use these fallbacks instead:
+                    </p>
+                    <div className="flex flex-col gap-2 mt-2">
+                      <a 
+                        href={gmailLink} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-thread hover:underline font-medium"
+                      >
+                        <i className="ti ti-brand-gmail text-[16px]"></i> Open in Gmail (Web)
+                      </a>
+                      <p>
+                        Or email directly to: <span className="font-medium bg-beige px-1.5 py-0.5 rounded border border-thread/20 select-all">{getRealEmail()}</span>
+                      </p>
+                    </div>
+                  </div>
                 </div>
               )}
             </form>
           </div>
 
           {/* RIGHT: PREVIEW */}
-          <div className="bg-white border border-[#E2E2DF] rounded-xl overflow-hidden sticky top-6 shadow-sm">
-            <div className="bg-[#E1F5EE] px-4 py-2.5 flex items-center justify-between border-b border-[#E2E2DF]">
+          <div className="bg-paper border border-steel/20 rounded overflow-hidden sticky top-6 shadow-sm">
+            <div className="bg-beige/30 px-4 py-2.5 flex items-center justify-between border-b border-steel/20">
               <div className="flex items-center gap-2">
-                <i className="ti ti-mail text-[16px] text-[#0F6E56]"></i>
-                <span className="font-sans text-[13px] font-medium text-[#0F6E56]">Email preview</span>
+                <i className="ti ti-mail text-[16px] text-thread"></i>
+                <span className="font-mono text-[11px] uppercase tracking-wider font-medium text-thread">Email preview</span>
               </div>
-              <span className="font-sans text-[11px] text-muted">updates as you type</span>
+              <span className="font-mono text-[11px] uppercase tracking-wider text-steel">updates as you type</span>
             </div>
-            <div className="p-5 font-sans text-[13px] leading-[1.8] text-[#3D3D3A] whitespace-pre-wrap">
+            <div className="p-5 font-body text-[13px] leading-[1.8] text-ink whitespace-pre-wrap">
               <div>To: p***@gmail.com</div>
               <div>
                 Subject: {formData.category && formData.name ? `[LabThread] ${formData.category} — question from ${formData.name}` : "-------------------------------------"}

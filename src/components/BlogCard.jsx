@@ -19,27 +19,30 @@ const BlogCard = ({ post }) => {
     <motion.div variants={itemVariants} whileHover={{ y: -4, transition: { duration: 0.2 } }}>
       <Link 
         to={`/blog/${post.slug}`} 
-        className="block h-full bg-white border border-[#E2E2DF] rounded-xl p-5 hover:border-gray-400 hover:shadow-md transition-all duration-200"
+        className="block h-full bg-paper border-t border-steel/20 pt-5 hover:border-thread transition-all duration-200"
       >
-        <div className="w-10 h-10 bg-primary-light rounded-lg flex items-center justify-center text-[22px]">
-          {post.coverEmoji}
+        <div className="w-8 h-8 flex items-center justify-center text-ink mb-2">
+          {/* Single-line ink icon */}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+          </svg>
         </div>
         
-        <h3 className="font-serif text-[18px] text-foreground mt-3 leading-tight line-clamp-2">
+        <h3 className="font-display font-[500] text-[20px] text-ink mt-3 leading-tight line-clamp-2">
           {post.title}
         </h3>
         
-        <p className="font-sans text-[13px] text-gray-500 mt-2 line-clamp-3">
+        <p className="font-body text-[14px] text-steel mt-2 line-clamp-3">
           {post.excerpt}
         </p>
         
-        <div className="flex items-center justify-between mt-4">
-          <span className="text-[12px] text-gray-400">
+        <div className="flex items-center justify-between mt-4 overflow-hidden gap-4">
+          <span className="font-mono text-[12.5px] uppercase tracking-wider text-steel shrink-0">
             {formattedDate}
           </span>
-          <div className="flex gap-2">
+          <div className="flex gap-2 overflow-hidden items-center justify-end">
             {displayTags.map(tag => (
-              <span key={tag} className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded text-[11px] font-medium tracking-wide">
+              <span key={tag} className="px-2 py-0.5 bg-beige text-ink rounded-[4px] font-mono text-[11px] uppercase tracking-wider whitespace-nowrap overflow-hidden text-ellipsis max-w-[100px]">
                 {tag}
               </span>
             ))}

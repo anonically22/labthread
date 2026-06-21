@@ -27,24 +27,24 @@ const Home = () => {
       </div>
       <AboutAuthor />
       
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
-        <h2 className="text-3xl font-serif font-bold text-foreground mb-8 text-center md:text-left">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 relative">
+        <h2 className="text-[28px] md:text-[36px] font-display font-[500] text-ink mb-8 text-center md:text-left">
           Latest from the blog
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
           {recentPosts.map(post => (
             <BlogCard key={post.id} post={post} />
           ))}
         </div>
         <div className="text-center">
-          <Link to="/blog" className="text-[#0F6E56] text-[14px] font-medium font-sans hover:underline">
+          <Link to="/blog" className="text-thread text-[14px] font-medium font-body hover:underline">
             Read all posts &rarr;
           </Link>
         </div>
 
         {/* Quick email tips section */}
-        <div className="mt-20">
-          <h2 className="text-3xl font-serif font-bold text-foreground mb-8 text-center md:text-left">
+        <div className="mt-20 relative">
+          <h2 className="text-[28px] md:text-[36px] font-display font-[500] text-ink mb-8 text-center md:text-left">
             Quick email tips
           </h2>
           <div className="flex flex-col gap-3 mb-6 max-w-3xl mx-auto md:mx-0">
@@ -58,7 +58,7 @@ const Home = () => {
             ))}
           </div>
           <div className="text-center md:text-left">
-            <Link to="/tips" className="text-[#0F6E56] text-[14px] font-medium font-sans hover:underline">
+            <Link to="/tips" className="text-thread text-[14px] font-medium font-body hover:underline">
               See all tips &rarr;
             </Link>
           </div>
@@ -66,10 +66,10 @@ const Home = () => {
       </div>
 
       {/* Ask a question CTA strip */}
-      <div className="bg-[#0F6E56] w-full py-12 px-6 mt-20 text-center">
-        <h2 className="text-white font-serif text-2xl md:text-3xl mb-2">{settings?.ctaHeading || "Have a question about research life?"}</h2>
-        <p className="text-white/80 font-sans text-[15px] mb-6">{settings?.ctaSubtext || "Ask Nupur directly — she reads every message."}</p>
-        <Link to="/ask" className="inline-block bg-white text-[#0F6E56] font-sans font-medium text-[15px] py-3 px-7 rounded-lg hover:bg-gray-50 transition-colors">
+      <div className="bg-ink w-full py-16 px-6 mt-20 text-center relative z-10">
+        <h2 className="text-paper font-display font-[500] text-[28px] md:text-[36px] mb-3">{settings?.ctaHeading || "Have a question about research life?"}</h2>
+        <p className="text-beige font-body text-[16px] mb-8">{settings?.ctaSubtext || "Ask Nupur directly — she reads every message."}</p>
+        <Link to="/ask" className="inline-block bg-paper text-ink font-body font-medium text-[15px] py-3 px-8 rounded hover:bg-beige transition-colors">
           Ask a question &rarr;
         </Link>
       </div>
