@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-import { getPostBySlug, getPublishedPosts } from '../utils/blogStore';
+import blogsData from '../data/blogs.json';
 import BlogCard from '../components/BlogCard';
 
 const BlogPost = () => {
@@ -10,11 +10,13 @@ const BlogPost = () => {
   const [recentPosts, setRecentPosts] = useState([]);
 
   useEffect(() => {
-    const foundPost = getPostBySlug(slug);
+    const foundPost = blogsData.find(post => post.slug === slug) || null;
     setPost(foundPost);
     
     if (foundPost) {
-      const allPublished = getPublishedPosts();
+      const allPublished = blogsData
+        .filter(p => p.published)
+        .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
       const others = allPublished.filter(p => p.id !== foundPost.id).slice(0, 2);
       setRecentPosts(others);
     }

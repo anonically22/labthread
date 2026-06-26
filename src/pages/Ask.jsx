@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const getRealEmail = () => "moc.liamg@307naabrina".split("").reverse().join("");
+const getRealEmail = () => "moc.liamg@3002.rupunlap".split("").reverse().join("");
 
 const Ask = () => {
   const [mountTime, setMountTime] = useState(0);
@@ -12,6 +12,7 @@ const Ask = () => {
     website: '' // honeypot
   });
   const [submitted, setSubmitted] = useState(false);
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [gmailLink, setGmailLink] = useState('');
 
   useEffect(() => {
@@ -33,7 +34,8 @@ const Ask = () => {
       formData.email.trim() !== '' &&
       formData.email.includes('@') &&
       formData.category !== '' &&
-      formData.question.trim().length >= 30
+      formData.question.trim().length >= 30 &&
+      agreedToTerms
     );
   };
 
@@ -78,6 +80,14 @@ Sent via LabThread · labthread.vercel.app`;
     
     // Fake success for bots, real success for users
     setSubmitted(true);
+    setFormData({
+      name: '',
+      email: '',
+      category: '',
+      question: '',
+      website: ''
+    });
+    setAgreedToTerms(false);
   };
 
   return (
@@ -117,7 +127,7 @@ Sent via LabThread · labthread.vercel.app`;
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  placeholder="e.g. Priya Sharma"
+                  placeholder="Name"
                   className="w-full border border-steel/20 rounded px-4 py-2.5 font-body text-[15px] bg-paper focus:outline-none focus:border-thread focus:ring-1 focus:ring-thread"
                 />
               </div>
@@ -176,6 +186,19 @@ Sent via LabThread · labthread.vercel.app`;
                 </div>
               </div>
 
+              <div className="flex items-start gap-3 mt-4 mb-2">
+                <input
+                  type="checkbox"
+                  id="agreedToTerms"
+                  checked={agreedToTerms}
+                  onChange={(e) => setAgreedToTerms(e.target.checked)}
+                  className="mt-1 w-4 h-4 text-thread border-steel/30 rounded focus:ring-thread cursor-pointer"
+                />
+                <label htmlFor="agreedToTerms" className="text-[13.5px] text-steel font-body cursor-pointer">
+                  I agree to the <a href="/terms" className="text-thread hover:underline">Terms & Conditions</a> and <a href="/cookies" className="text-thread hover:underline">Cookies Policy</a>.
+                </label>
+              </div>
+
               <button
                 type="submit"
                 disabled={!isFormValid()}
@@ -205,9 +228,6 @@ Sent via LabThread · labthread.vercel.app`;
                       >
                         <i className="ti ti-brand-gmail text-[16px]"></i> Open in Gmail (Web)
                       </a>
-                      <p>
-                        Or email directly to: <span className="font-medium bg-beige px-1.5 py-0.5 rounded border border-thread/20 select-all">{getRealEmail()}</span>
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -225,7 +245,6 @@ Sent via LabThread · labthread.vercel.app`;
               <span className="font-mono text-[11px] uppercase tracking-wider text-steel">updates as you type</span>
             </div>
             <div className="p-5 font-body text-[13px] leading-[1.8] text-ink whitespace-pre-wrap">
-              <div>To: p***@gmail.com</div>
               <div>
                 Subject: {formData.category && formData.name ? `[LabThread] ${formData.category} — question from ${formData.name}` : "-------------------------------------"}
               </div>

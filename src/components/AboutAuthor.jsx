@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { getAuthorData } from '../utils/authorStore';
+import { DEFAULT_AUTHOR_DATA } from '../data/authorData';
 import ExperienceCard from './ExperienceCard';
 import profileImage from '../assets/profile.png';
 
@@ -29,7 +29,7 @@ const AboutAuthor = () => {
   const [authorData, setAuthorData] = useState(null);
 
   useEffect(() => {
-    setAuthorData(getAuthorData());
+    setAuthorData(DEFAULT_AUTHOR_DATA);
   }, []);
 
   if (!authorData) return null;

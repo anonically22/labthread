@@ -3,20 +3,24 @@ import Hero from '../components/Hero';
 import AboutAuthor from '../components/AboutAuthor';
 import BlogCard from '../components/BlogCard';
 import TipCard from '../components/TipCard';
-import { getPublishedPosts } from '../utils/blogStore';
-import { getAllTips } from '../utils/tipsStore';
-import { getSettings } from '../utils/settingsStore';
+import blogsData from '../data/blogs.json';
+import tipsData from '../data/tips.json';
+import settingsData from '../data/settings.json';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-  const recentPosts = getPublishedPosts().slice(0, 3);
+  const recentPosts = blogsData
+    .filter(p => p.published)
+    .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
+    .slice(0, 3);
   const [tips, setTips] = useState([]);
   const [settings, setSettings] = useState(null);
   const [openTipId, setOpenTipId] = useState(null);
 
   useEffect(() => {
-    setTips(getAllTips().slice(0, 2));
-    setSettings(getSettings());
+    const sortedTips = [...tipsData].sort((a, b) => a.order - b.order).slice(0, 2);
+    setTips(sortedTips);
+    setSettings(settingsData);
   }, []);
 
   return (

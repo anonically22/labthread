@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getSettings } from '../utils/settingsStore';
+import settingsData from '../data/settings.json';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -35,7 +35,7 @@ const Hero = () => {
   const [settings, setSettings] = useState(null);
 
   useEffect(() => {
-    setSettings(getSettings());
+    setSettings(settingsData);
   }, []);
 
   if (!settings) return null;

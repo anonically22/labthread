@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { getAllTips } from '../utils/tipsStore';
+import tipsData from '../data/tips.json';
 import TipCard from '../components/TipCard';
 
 const Tips = () => {
@@ -8,7 +8,8 @@ const Tips = () => {
   const [openCardsByCategory, setOpenCardsByCategory] = useState({});
 
   useEffect(() => {
-    setTips(getAllTips());
+    const sorted = [...tipsData].sort((a, b) => a.order - b.order);
+    setTips(sorted);
   }, []);
 
   // Group tips by category

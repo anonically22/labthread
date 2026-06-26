@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { getPublishedPosts } from '../utils/blogStore';
+import blogsData from '../data/blogs.json';
 import BlogCard from '../components/BlogCard';
 
 const containerVariants = {
@@ -23,7 +23,10 @@ const Blog = () => {
   const [activeTag, setActiveTag] = useState("All");
 
   useEffect(() => {
-    setPosts(getPublishedPosts());
+    const published = blogsData
+      .filter(post => post.published)
+      .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+    setPosts(published);
   }, []);
 
   const filteredPosts = activeTag === "All" 
